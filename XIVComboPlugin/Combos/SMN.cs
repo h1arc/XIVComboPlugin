@@ -1,3 +1,4 @@
+using System.Diagnostics.Metrics;
 using Dalamud.Game.ClientState.JobGauge.Types;
 
 namespace XIVCombo.Combos;
@@ -47,6 +48,12 @@ internal static class SMN
         CrimsonStrike = 25885,
         Gemshine = 25883,
         PreciousBrilliance = 25884,
+        RubyRite = 25823,
+        TopazRite = 25824,
+        EmeraldRite = 25825,
+        RubyCatastrophe = 25832,
+        TopazCatastrophe = 25833,
+        EmeraldCatastrophe = 25834,
         Necrosis = 36990,
         SearingFlash = 36991,
         SummonSolarBahamut = 36992,
@@ -150,6 +157,54 @@ internal class SummonerLuxSolarisFeature : CustomCombo
         {
             if (HasEffect(SMN.Buffs.LuxSolarisReady))
                 return SMN.LuxSolaris;
+        }
+
+        return actionID;
+    }
+}
+
+internal class SummonerRuinGemshineFavor : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerRuinGemshineFavor;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == SMN.Ruin3)
+        {
+            var gauge = GetJobGauge<SMNGauge>();
+            if (level >= SMN.Levels.Gemshine && gauge.AttunementCount > 0)
+            {
+                if (gauge.IsIfritAttuned)
+                    return SMN.RubyRite;
+                if (gauge.IsTitanAttuned)
+                    return SMN.TopazRite;
+                if (gauge.IsGarudaAttuned)
+                    return SMN.EmeraldRite;
+            }
+        }
+
+        return actionID;
+    }
+}
+
+internal class SummonerTriDisasterPreciousBrilliance : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerTriDisasterPreciousBrilliance;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == SMN.TriDisaster)
+        {
+            var gauge = GetJobGauge<SMNGauge>();
+            if (level >= SMN.Levels.PreciousBrilliance && gauge.AttunementCount > 0)
+            {
+                if (gauge.IsIfritAttuned)
+                    return SMN.RubyCatastrophe;
+                if (gauge.IsTitanAttuned)
+                    return SMN.TopazCatastrophe;
+                if (gauge.IsGarudaAttuned)
+                    return SMN.EmeraldCatastrophe;
+            }
         }
 
         return actionID;

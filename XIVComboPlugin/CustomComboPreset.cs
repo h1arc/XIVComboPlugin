@@ -457,6 +457,16 @@ public enum CustomComboPreset
     [CustomComboInfo("Summon Lux Solaris Feature", "Replace Summon Bahamut with Lux Solaris when you have Refulgent Lux ready.", SMN.JobID)]
     SummonerSummonLuxSolarisFeature = 2717,
 
+    [IconsCombo([SMN.Ruin3, UTL.ArrowLeft, SMN.Gemshine, UTL.Blank, SMN.Buffs.IfritsFavor, SMN.Buffs.TitansFavor, SMN.Buffs.GarudasFavor, UTL.Checkmark])]
+    [SectionCombo("Egi features")]
+    [CustomComboInfo("Ruin III to Gemshine Feature", "Replace Ruin III with Gemshine when under Ifrit's, Titan's, or Garuda's Favor.", SMN.JobID)]
+    SummonerRuinGemshineFavor = 2718,
+
+    [IconsCombo([SMN.TriDisaster, UTL.ArrowLeft, SMN.PreciousBrilliance, UTL.Blank, SMN.Buffs.IfritsFavor, SMN.Buffs.TitansFavor, SMN.Buffs.GarudasFavor, UTL.Checkmark])]
+    [SectionCombo("Egi features")]
+    [CustomComboInfo("Tri-disaster to Precious Brilliance Feature", "Replace Tri-disaster with Precious Brilliance when under Ifrit's, Titan's, or Garuda's Favor.", SMN.JobID)]
+    SummonerTriDisasterPreciousBrilliance = 2719,
+
     #endregion
     // ====================================================================================
     #region VIPER
